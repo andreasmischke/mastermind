@@ -1,6 +1,152 @@
-body {
-	margin: 0;
-	background: #333;
-	color: #555;
-	font-family: sans-serif;
-}
+@import colors.sass
+@import mixins.sass
+
+body
+    min-width: $viewport_xs
+    margin: 0
+    background: $bg_color
+    color: $gray
+    font-family: sans-serif
+    -webkit-touch-callout: none
+    -webkit-user-select: none
+    -khtml-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+    user-select: none
+
+.gameboard
+    padding-bottom: 20vw
+
+.row
+
+    &.active .pointer
+        visibility: visible
+
+    &.done .marker_box
+        display: inline-block
+
+    &.active .check_box
+        display: inline-block
+
+.cell,
+.marker_box,
+.check_box
+    display: inline-block
+    width: 10vw
+    height: 10vw
+    margin: 2vw
+
+    @include viewport_xs
+        width: #{$viewport_xs / 10}
+        height: #{$viewport_xs / 10}
+        margin: #{ceil($viewport_xs / 50)}
+
+.marker_box
+    display: none
+
+.cell
+    position: relative
+    border-radius: 50%
+    background: nth($pick_colors, 1)
+
+.cell_selected
+    box-shadow: 0 0 .5em #fff
+
+.dragging_cell
+    position: absolute
+    left: 0
+    top: 0
+    margin: 0 !important
+    z-index: 1
+
+@for $i from 0 through 6
+    [data-color='#{$i}']
+        background: nth($pick_colors, $i+1)
+
+.pointer
+    display: inline-block
+    visibility: hidden
+    height: 5vw
+    width: 5vw
+    margin: 5vw
+    transform: rotate(-45deg)
+    background: $gray
+
+    @include viewport_xs
+        height: relative_vw($viewport_xs, 5)
+        width: relative_vw($viewport_xs, 5)
+        margin: relative_vw($viewport_xs, 5)
+
+    &:after
+        position: relative
+        left: -1px
+        top: -1px
+        display: block
+        content: ""
+        height: 3vw
+        width: 3vw
+        background: $bg_color
+
+        @include viewport_xs
+            height: relative_vw($viewport_xs, 3)
+            width: relative_vw($viewport_xs, 3)
+
+.marker
+    height: 3vw
+    width: 3vw
+    margin: 1vw
+    background: $dark_gray
+    border-radius: 50%
+    float: left
+
+    @include viewport_xs
+        height: relative_vw($viewport_xs, 2)
+        width: relative_vw($viewport_xs, 2)
+        margin: relative_vw($viewport_xs, 1)
+
+    &.hit
+        background: $hit_color
+
+    &.match
+        background: $match_color
+
+.color_tray
+    position: fixed
+    left: 0
+    bottom: 0
+    min-width: $viewport_xs
+    width: 100%
+    text-align: center
+    background: $dark_gray
+
+.check_box
+    display: none
+    cursor: pointer
+
+    &:hover .check
+        background: $okay
+
+.check
+    background: $gray
+    width: 5vw
+    height: 8vw
+    transform: rotate(45deg)
+    margin-left: 3vw
+
+    @include viewport_xs
+        width: relative_vw($viewport_xs, 5)
+        height: relative_vw($viewport_xs, 8)
+
+    &:after
+        position: relative
+        left: -1px
+        top: -1px
+        content: ""
+        display: block
+        background: $bg_color
+        width: 3vw
+        height: 6vw
+
+        @include viewport_xs
+            width: relative_vw($viewport_xs, 3)
+            height: relative_vw($viewport_xs, 6)

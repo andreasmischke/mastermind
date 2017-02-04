@@ -1,0 +1,6 @@
+@function relative_vw($base, $factor)
+    @return ceil($base / 100 * $factor)
+
+@mixin viewport_xs
+    @media (max-width: $viewport_xs)
+        @content
