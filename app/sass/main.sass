@@ -17,6 +17,10 @@ body
 .gameboard
     padding-bottom: 20vw
 
+    @include viewport_md
+        width: 480px
+        margin: 0 auto
+
 .row
 
     &.active .pointer
@@ -40,6 +44,11 @@ body
         width: #{$viewport_xs / 10}
         height: #{$viewport_xs / 10}
         margin: #{ceil($viewport_xs / 50)}
+
+    @include viewport_md
+        width: relative_vw($viewport_md, 10)
+        height: relative_vw($viewport_md, 10)
+        margin: relative_vw($viewport_md, 2)
 
 .marker_box
     display: none
@@ -77,6 +86,11 @@ body
         width: relative_vw($viewport_xs, 5)
         margin: relative_vw($viewport_xs, 5)
 
+    @include viewport_md
+        height: relative_vw($viewport_md, 5)
+        width: relative_vw($viewport_md, 5)
+        margin: relative_vw($viewport_md, 5)
+
     &:after
         position: relative
         left: -1px
@@ -91,6 +105,10 @@ body
             height: relative_vw($viewport_xs, 3)
             width: relative_vw($viewport_xs, 3)
 
+        @include viewport_md
+            height: relative_vw($viewport_md, 3)
+            width: relative_vw($viewport_md, 3)
+
 .marker
     height: 3vw
     width: 3vw
@@ -103,6 +121,11 @@ body
         height: relative_vw($viewport_xs, 2)
         width: relative_vw($viewport_xs, 2)
         margin: relative_vw($viewport_xs, 1)
+
+    @include viewport_md
+        height: relative_vw($viewport_md, 2)
+        width: relative_vw($viewport_md, 2)
+        margin: relative_vw($viewport_md, 1)
 
     &.hit
         background: $hit_color
@@ -136,6 +159,12 @@ body
     @include viewport_xs
         width: relative_vw($viewport_xs, 5)
         height: relative_vw($viewport_xs, 8)
+        margin-left: relative_vw($viewport_xs, 3)
+
+    @include viewport_md
+        width: relative_vw($viewport_md, 5)
+        height: relative_vw($viewport_md, 8)
+        margin-left: relative_vw($viewport_md, 3)
 
     &:after
         position: relative
@@ -150,3 +179,7 @@ body
         @include viewport_xs
             width: relative_vw($viewport_xs, 3)
             height: relative_vw($viewport_xs, 6)
+
+        @include viewport_md
+            width: relative_vw($viewport_md, 3)
+            height: relative_vw($viewport_md, 6)
